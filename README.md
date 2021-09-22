@@ -26,9 +26,21 @@ gcloud artifacts repositories list
 
 ## PROJECT ACCESSING GOOGLE CLOUD BUCKET    
 
+
+### REFERENCE
+
+https://dzone.com/articles/upload-files-to-google-cloud
+
+
 ```
-export GOOGLE_APPLICATION_CREDENTIALS="/C/Users/damicabile/googlecloud/gbucket-on-gke-f3960f0e2284.json
+# Create google cloud keys as JSON and put them into the directoy /google-cloud-keys 
+
+export GOOGLE_APPLICATION_CREDENTIALS="/google-cloud-keys/gbucket-on-gke-f3960f0e2284.json
 cd test-gbucket
 docker build . -t test-gbucket
-docker run --rm -e PORT=8080 -p 8080:8080 test-gbucket
+docker run --rm -e PORT=8080 --name bbucket-gke --mount type=bind,source=/google-cloud-keys,target=/google-cloud-keys -p 8080:8080 bbucket-gke:latest
+docker exec -it bbucket-gke /bin/bash
+docker stop bbucket-gke
 ```
+
+
