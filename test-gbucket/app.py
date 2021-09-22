@@ -10,5 +10,11 @@ def hello_world():
     return 'Hello {}!\n'.format(target)
 
 if __name__ == "__main__":
+    from google.cloud import storage
+
+    client = storage.Client()
+    # https://console.cloud.google.com/storage/browser/[bucket-id]/
+    bucket = client.get_bucket('gsbucket-gke')
     app.run(debug=True,host='0.0.0.0',port=int(os.environ.get('PORT', 8080)))
+
 

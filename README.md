@@ -24,6 +24,11 @@ gcloud builds submit --tag europe-west1-docker.pkg.dev/gbucket-on-gke/hello-repo
 gcloud artifacts repositories list
 ```
 
-## 
+## PROJECT ACCESSING GOOGLE CLOUD BUCKET    
 
-
+```
+export GOOGLE_APPLICATION_CREDENTIALS="/C/Users/damicabile/googlecloud/gbucket-on-gke-f3960f0e2284.json
+cd test-gbucket
+docker build . -t test-gbucket
+docker run --rm -e PORT=8080 -p 8080:8080 test-gbucket
+```
