@@ -2,20 +2,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: helloworld-gke
+  name: bbucket-gke
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: hello
+      app: bbucket
   template:
     metadata:
       labels:
-        app: hello
+        app: bbucket
     spec:
       containers:
-      - name: hello-app
-        image: europe-west1-docker.pkg.dev/gbucket-on-gke/hello-repo/helloworld-gke:latest
+      - name: bbucket-app
+        image: europe-west1-docker.pkg.dev/gbucket-on-gke/bbucket-gke/bbucket-gke:latest
         ports:
         - containerPort: 8080
         env:

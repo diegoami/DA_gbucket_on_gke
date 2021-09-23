@@ -12,8 +12,12 @@ def hello_world():
 if __name__ == "__main__":
     from google.cloud import storage
     google_application_credentials = os.environ.get('GOOGLE_APPLICATION_CREDENTIALS')
-    print(google_application_credentials)
-    client = storage.Client.from_service_account_json(google_application_credentials)
+    if (google_application_credentials):
+        print(google_application_credentials)
+        client = storage.Client.from_service_account_json(google_application_credentials)
+    else:
+        print("No GOOGLE_APPLICATION_CREDENTIAL env found")
+        client = storage.Client()
     # https://console.cloud.google.com/storage/browser/[bucket-id]/
     bucket = client.get_bucket('gsbucket-gke')
 
